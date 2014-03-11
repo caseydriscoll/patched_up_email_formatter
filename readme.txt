@@ -3,7 +3,7 @@ Contributors: caseypatrickdriscoll
 Tags: email
 Requires at least: 3.8.1
 Tested up to: 3.8.1
-Version: 0.1.1
+Version: 0.1.2
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
