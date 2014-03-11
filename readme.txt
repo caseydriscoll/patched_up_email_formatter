@@ -3,7 +3,7 @@ Contributors: caseypatrickdriscoll
 Tags: email, gmail, quick, action, inbox
 Requires at least: 3.8.1
 Tested up to: 3.8.1
-Version: 0.2.0
+Version: 0.2.1
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -70,6 +70,11 @@ comment can easily be approved from there. I know that was not the spirit of thi
 
 == Changelog ==
 
+= 0.2.1 =
+
+* Adds Instructions for registration
+* Adds styling for settings page
+
 = 0.2.0 =
 
 * Adds blank settings page and settings link
@@ -84,8 +89,8 @@ comment can easily be approved from there. I know that was not the spirit of thi
 
 == TODO ==
 
+* Separate settings page into own class
 * Make 'amazing usability' on settings page
-  * Instructions for registration
   * Test email functionality
 * Multisite aware <- already is?
 * Create `with-nonce` branch
