@@ -8,10 +8,7 @@
 
 		function __construct() {
       add_filter( 'wp_mail_from', function($email) {
-        return 'casey@patchedupcreative.com';
-      });
-      add_filter( 'wp_mail_from_name', function($name) {
-        return 'Casey Driscoll';
+        return get_option('admin_email');
       });
   
 			add_filter( 'comment_moderation_headers', array( $this, 'email_headers' ) );
