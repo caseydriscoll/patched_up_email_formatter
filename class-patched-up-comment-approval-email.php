@@ -17,7 +17,7 @@
 		}
 
     public function sample_markup(){
-      return 'hi casey';
+      return '';
     }
 
 		function email_headers(){

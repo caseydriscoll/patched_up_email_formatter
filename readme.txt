@@ -3,7 +3,7 @@ Contributors: caseypatrickdriscoll
 Tags: email, gmail, quick, action, inbox
 Requires at least: 3.8.1
 Tested up to: 3.8.1
-Version: 0.3.1
+Version: 0.3.2
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -69,6 +69,10 @@ comment can easily be approved from there. I know that was not the spirit of thi
 1. Activate the plugin through the 'Plugins' menu in WordPress
 
 == Changelog ==
+
+= 0.3.2 =
+
+* Fixes typos
 
 = 0.3.1 =
 

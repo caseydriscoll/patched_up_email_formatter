@@ -61,7 +61,7 @@ class Patched_Up_Email_Formatter_Options_Page {
     $last_comment_post_id     = $last_comment->comment_post_ID;
     $last_comment_post_title  = get_post($last_comment_post_id)->post_title;
     echo   '<p>
-              Press the button to send a test email to you administrator email.
+              Press the button to send a test email to your administrator email.
             </p>
             <p>
               Will send test approval email to <span class="code">' . get_option('admin_email') .'</span>
