@@ -4,3 +4,8 @@ section#patched_up_email_formatter_options {
 section#patched_up_email_formatter_options ul li {
   padding: 0 15px;
 }
+section#patched_up_email_formatter_options span.code {
+  font-family: monospace;
+  font-weight: bold;
+  color: #000;
+}

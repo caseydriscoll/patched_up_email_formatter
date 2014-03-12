@@ -3,7 +3,7 @@ Contributors: caseypatrickdriscoll
 Tags: email, gmail, quick, action, inbox
 Requires at least: 3.8.1
 Tested up to: 3.8.1
-Version: 0.2.1
+Version: 0.3.0
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -70,6 +70,10 @@ comment can easily be approved from there. I know that was not the spirit of thi
 
 == Changelog ==
 
+= 0.3.0 =
+
+* Adds "Test email" functionality with ajax call
+
 = 0.2.1 =
 
 * Adds Instructions for registration
@@ -92,5 +96,9 @@ comment can easily be approved from there. I know that was not the spirit of thi
 * Separate settings page into own class
 * Make 'amazing usability' on settings page
   * Test email functionality
+    * Need to know if email actually successfully sent instead of just claiming it is
+  * Sample Email information
+  * Need to have an 'activation' checkbox that only formats email if checked.
+    Otherwise pluign should just be for test funcionality
 * Multisite aware <- already is?
 * Create `with-nonce` branch
