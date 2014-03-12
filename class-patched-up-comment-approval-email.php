@@ -4,7 +4,7 @@
   * http://www.artishock.net/wordpress/how-to-change-wordpress-default-email-from-name-and-from-address/
 	*/
 
-	class Patched_Up_Email_Formatter {
+	class Patched_Up_Comment_Approval_Email {
 
 		function __construct() {
       add_filter( 'wp_mail_from', function($email) {
@@ -15,6 +15,10 @@
 			add_filter( 'comment_moderation_subject', array( $this, 'email_subject' ), 10, 2 );
 			add_filter( 'comment_moderation_text', array( $this, 'email_text' ), 10, 2 );
 		}
+
+    public function sample_markup(){
+      return 'hi casey';
+    }
 
 		function email_headers(){
 			add_filter( 'wp_mail_content_type', create_function( '', 'return "text/html";' ) );
