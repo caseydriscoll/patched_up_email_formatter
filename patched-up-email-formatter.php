@@ -1,7 +1,7 @@
 <?php
 /*
 Plugin Name: Patched Up Email Formatter
-Version: 0.3.2
+Version: 0.3.3
 Description: A quick email formatter
 Author: Casey Patrick Driscoll
 Author URI: http://caseypatrickdriscoll.com

@@ -17,11 +17,15 @@
 		}
 
     public function sample_markup(){
-      return '';
+      return '<xmp>' .
+                $this->email_text( 0, get_last_comment()->comment_ID) .
+             '</xmp>';
     }
 
 		function email_headers(){
-			add_filter( 'wp_mail_content_type', create_function( '', 'return "text/html";' ) );
+      add_filter( 'wp_mail_content_type', function() {
+        return "text/html"; 
+      });
 		}
 
 		function email_subject( $subject, $comment_id ) {
@@ -52,51 +56,50 @@
                       "wp-admin/comment.php?c=$comment->comment_ID" . 
                       "&action=approve";
 
-      $script =					
-				'<script type="application/ld+json">
-          {
-            "@context": "http://schema.org",
-            "@type": "EmailMessage", 
-            "action": {
-              "@type": "ViewAction",
-              "name": "Approve Comment",
-              "url": "' . $approval_url . '"
-            },
-            "description": "Approval request for SOME COMMENT" 
-          } 
-        </script>'; 
+      $script = '<script type="application/ld+json">
+      {
+        "@context": "http://schema.org",
+        "@type": "EmailMessage", 
+        "action": {
+          "@type": "ViewAction",
+          "name": "Approve Comment",
+          "url": "' . $approval_url . '"
+        }
+      } 
+    </script>'; 
 
 
-      // Taken directly from /wp-include/pluggable.php then transcribed a bit into html
-      $notify_message  = sprintf( __('A new comment on the post "%s" is waiting for your approval'), $post->post_title ) . "<br />";
-      $notify_message .= get_permalink($comment->comment_post_ID) . "<br /><br />";
-      $notify_message .= sprintf( __('Author : %1$s (IP: %2$s , %3$s)'), $comment->comment_author, $comment->comment_author_IP, $comment_author_domain ) . "<br />";
-      $notify_message .= sprintf( __('E-mail : %s'), $comment->comment_author_email ) . "<br />";
-      $notify_message .= sprintf( __('URL    : %s'), $comment->comment_author_url ) . "<br />";
-      $notify_message .= sprintf( __('Whois  : http://whois.arin.net/rest/ip/%s'), $comment->comment_author_IP ) . "<br />";
-      $notify_message .= __('Comment: ') . "<br />" . $comment->comment_content . "<br /><br />";
-      $notify_message .= sprintf( __('Approve it: %s'),  admin_url("comment.php?action=approve&c=$comment_id") ) . "<br />";
+      // In order to 'extend' email, taken directly from /wp-include/pluggable.php then transcribed a bit into html
+      // Also formatted with escaped characters for sample_markup() display
+      $notify_message  = sprintf( __('A new comment on the post "%s" is waiting for your approval'), $post->post_title ) . "<br />\r\n\40\40\40\40" .
+           get_permalink($comment->comment_post_ID) . "<br /><br />\r\n\r\n\40\40\40\40" .
+           sprintf( __('Author : %1$s (IP: %2$s , %3$s)'), $comment->comment_author, $comment->comment_author_IP, $comment_author_domain ) . "<br />\r\n\40\40\40\40" .
+          sprintf( __('E-mail : %s'), $comment->comment_author_email ) . "<br />\r\n\40\40\40\40" .
+          sprintf( __('URL    : %s'), $comment->comment_author_url ) . "<br />\r\n\40\40\40\40" .
+          sprintf( __('Whois  : http://whois.arin.net/rest/ip/%s'), $comment->comment_author_IP ) . "<br />\r\n\40\40\40\40" .
+          __('Comment: ') . "<br />\r\n\40\40\40\40" . $comment->comment_content . "<br /><br />\r\n\r\n\40\40\40\40" .
+          sprintf( __('Approve it: %s'),  admin_url("comment.php?action=approve&c=$comment_id") ) . "<br />\r\n\40\40\40\40";
 
       if ( EMPTY_TRASH_DAYS )
-        $notify_message .= sprintf( __('Trash it: %s'), admin_url("comment.php?action=trash&c=$comment_id") ) . "<br />";
+        $notify_message .= sprintf( __('Trash it: %s'), admin_url("comment.php?action=trash&c=$comment_id") ) . "<br />\r\n\40\40\40\40";
       else
-        $notify_message .= sprintf( __('Delete it: %s'), admin_url("comment.php?action=delete&c=$comment_id") ) . "<br />";
-      $notify_message .= sprintf( __('Spam it: %s'), admin_url("comment.php?action=spam&c=$comment_id") ) . "<br />";
+        $notify_message .= sprintf( __('Delete it: %s'), admin_url("comment.php?action=delete&c=$comment_id") ) . "<br />\r\n\40\40\40\40";
 
-      $notify_message .= sprintf( _n('Currently %s comment is waiting for approval. Please visit the moderation panel:',
-        'Currently %s comments are waiting for approval. Please visit the moderation panel:', $comments_waiting), number_format_i18n($comments_waiting) ) . "<br />";
-      $notify_message .= admin_url("edit-comments.php?comment_status=moderated") . "<br />";
+      $notify_message .= sprintf( __('Spam it: %s'), admin_url("comment.php?action=spam&c=$comment_id") ) . "<br />\r\n\40\40\40\40" .
+          sprintf( _n('Currently %s comment is waiting for approval. Please visit the moderation panel:',
+            'Currently %s comments are waiting for approval. Please visit the moderation panel:', $comments_waiting), 
+            number_format_i18n($comments_waiting) ) . "<br />\r\n\40\40\40\40" .
+          admin_url("edit-comments.php?comment_status=moderated") . "<br />";
 
-			$body = '<html>
-								<body>' .
-                  $script . 
-                  $notify_message .
-								'</body>
-							</html>';
-
+    $body = 
+'<html>
+  <body>
+    ' . $script . '
+    ' . $notify_message . '
+  </body>
+</html>';
 
 			return $body;
 
 		}
 	}
-?>

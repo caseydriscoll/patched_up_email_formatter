@@ -53,6 +53,9 @@ class Patched_Up_Email_Formatter_Options_Page {
             </p>';
 
     echo   '<h3>Sample Email Markup</h3>';
+    echo   '<p>
+              Below is the markup of the comment approval email that will be sent for the current last posted comment (if there is one).
+            </p>';
     echo   $patched_up_comment_approval_email->sample_markup();
 
     echo   '<h3>Test Email</h3>';
